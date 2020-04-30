@@ -76,7 +76,7 @@ function limit(fn,n){
   return function(x,y){
     for(i=0,i < n,i++){
       if (i<n){
-        return fn(x,y);
+        return fn(x,y)
       }
         else {
           return 'undefined'
