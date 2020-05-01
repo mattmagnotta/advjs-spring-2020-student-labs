@@ -73,14 +73,89 @@ function composeb(f1,f2){
 }
 
 function limit(fn,n){
+  count = 0
   return function(x,y){
-    for(i=0,i < n,i++){
-      if (i<n){
-        return fn(x,y)
-      }
-        else {
-          return 'undefined'
-      };
+    if (count < n){
+      count++
+      return fn(x,y)
+    }
+    else {
+      return
     }
   }
+ }
+
+function from(start){
+  return function(){
+    return start++
+  }
+}
+
+function to(fn,v){
+ return function(){
+   let value = fn()
+   if (value < v){
+    return value
+ }
+  else {
+    return
+  }
+ }
+}
+function fromTo(min, max) {
+  return to(from(min), max)
+}
+
+
+function element(array, gen) {
+  if (gen === undefined) {
+    gen = fromTo(0, array.length)
+  }
+  return function() {
+    return array[gen()]
+  }
+}
+
+function collect(fn,ar){
+  return function(){
+    x = fn()
+    if (x !== undefined){
+      ar.push(x)
+    }
+    return x
+    };
+  }
+
+
+function filter(gen,pred){
+  return function(){
+  while (true){
+    values = gen()
+    if (values === undefined){
+      return
+    }
+    if (pred(values)){
+      return values
+    }
+  }
+}
+}
+
+
+function concat(gen1,gen2){
+  return function(){
+    value = gen1()
+    if (value == undefined){
+      values = gen2()
+      if (values == undefined){
+        return
+      }
+      else {
+        return values
+      }
+    }
+    else{
+      return value
+    }
+}
 }
