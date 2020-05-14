@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+   <!-- Compiled and minified CSS -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+   <!-- Compiled and minified JavaScript -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+     <style type="text/css">
+     h2{
+       color: teal;
+     }
+     .container{
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+     }
+     #radioButtons {
+       display: flex;
+       
+     }
+     .todoitem{
+       display: flex;
+       flex-direction: row;
+       justify-content: space-between;
+     }
+     .row{
+       display: flex;
+       flex-direction: row;
+       justify-content: space-between;
+     }
+    </style>
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="container" id="container">
+      <h2>To Do's</h2>
+      
+          <form id="toDoItemForm" action="#">
+            <input id="toDoItem" name="toDoItem" type="input">
+            <input name ="submit" type="submit" value="add" class="btn"></input>
+          </form>
+        <div class="todoitem">
+          <div class="row">
+            <div class="col s6">
+              <div id='todo'>TODO</div>
+              
+            </div>
+            <class class="col s6">
+              <div id='done'>DONE</div>
+                
+            </class>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+    <script src="bundle.js" ></script>
+  </body>
+</html>
