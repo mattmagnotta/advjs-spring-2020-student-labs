@@ -23,6 +23,6 @@ function getMessages () {
     .then(data => console.log(data))
 }
 
-postMessage('hello')
+// postMessage('hello')
 
 //getMessages()

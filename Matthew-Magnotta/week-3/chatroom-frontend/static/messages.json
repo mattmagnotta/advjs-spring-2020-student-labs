@@ -1,0 +1,7 @@
+{
+  "username":{
+    "text" : "message from json file",
+    "date" : "newDate()",
+    "nickname" : "nickname"
+  }
+}

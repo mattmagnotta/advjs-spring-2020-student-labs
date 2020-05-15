@@ -19,6 +19,7 @@ router.set('/messages', function (req, res) {
     getMessages(req, res)
   } else if (req.method === 'POST') {
     postMessage(req, res)
+    
   } else {
     res.statusCode = 400
     res.end('unsupported operation')
@@ -28,6 +29,7 @@ router.set('/messages', function (req, res) {
 // this is the POST handler for /messages
 // this function should write a new message to the file
 function postMessage (req, res) {
+  console.log('inside postmessage funciton')
   let data = ''
   req.on('data', function (chunk) {
     data += chunk
@@ -35,7 +37,7 @@ function postMessage (req, res) {
 
   req.on('end', function () {
     // at this point, data should be the entire json payload of the request
-    console.log(data)
+    console.log(`data on end: ${req}` )
 
     // TODO: write code here to add the message to the messages file
 
@@ -51,10 +53,11 @@ function getMessages (req, res) {
   // TODO: write code here to get your messages from the file
 
   // here is an example of how your messages might be formatted
-  const exampleMessages = [
-    { text: 'hello! This is an example message.', date: new Date() },
-    { text: 'This is another message.', date: new Date() }
-  ]
+  console.log('inside getmessage funciton')
+  // const exampleMessages = [
+  //   { text: 'hello! This is an example message.', date: new Date() },
+  //   { text: 'This is another message.', date: new Date() }
+  // ]
 
   // here we set the response code to 200 (success), and the content type to json
   // then we send up the response by stringifying the messages array
