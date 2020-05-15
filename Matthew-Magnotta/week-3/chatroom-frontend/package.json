@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "watch-server": "npx nodemon index.js",
-    "watch": "npx watchify src/index.js -o bundle.js --debug --verbose"
+    "watch": "npx watchify index.js -o bundle.js --debug --verbose"
   },
   "author": "",
   "license": "ISC",
