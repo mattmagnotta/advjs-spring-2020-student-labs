@@ -1,30 +1,42 @@
-let todoItems = [];
+const yo = require('yo-yo')
+const todoItems = []
 
-function addTodo(text) {
+
+
+function list (todoItems) {
+  return yo`<ul>
+    ${todoItems.map(function (item, index) {
+      return yo`<li class=${item.completed ? 'done' : 'todo'}>
+        <span>${item.text}</span>
+        <button onclick=${() => done(index)}>Done</button>
+      </li>`
+    })}
+  </ul>`
+}
+
+function addTodo (text) {
   const todo = {
     text,
     checked: false,
-    id: Date.now(),
-  };
-  todoItems.push(todo);
+    id: Date.now()
+  }
+  todoItems.push(todo)
 }
-function removeTodo() {
+function removeTodo () {
   this.remove()
 }
 
-function createHTML(list,text){
-  var toDoItemDiv = document.createElement("DIV")
-  var lastElement = list[list.length -1]
-  var toDoContainer = document.getElementById('todo')
-  toDoItemDiv.innerHTML = lastElement.text
-  toDoItemDiv.setAttribute('class', 'toDoItemClass')
-  toDoContainer.after(toDoItemDiv)
+function createToDo (list) {
+  list.map(function(item, index){
+    return yo`<li>
+    <span> ${list.text}</span>
+    </li>`
+  }
 }
-
 
 module.exports = {
   createHTML,
   addTodo,
   removeTodo,
-  todoItems,
+  todoItems
 }
