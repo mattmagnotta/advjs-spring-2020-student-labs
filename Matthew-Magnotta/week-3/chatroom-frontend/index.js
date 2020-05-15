@@ -5,7 +5,7 @@ const st = require('st')
 const Router = require('http-hash-router')
 
 const port = 8000
-const MESSAGES_PATH = './messages.txt'
+const MESSAGES_PATH = 'static/messages.json'
 
 const mount = st({ path: path.join(__dirname, '/static'), url: '/static' })
 const router = Router()
@@ -37,14 +37,26 @@ function postMessage (req, res) {
 
   req.on('end', function () {
     // at this point, data should be the entire json payload of the request
-    console.log(`data on end: ${req}` )
-
+    fs.readFile(MESSAGES_PATH, 'utf8', (err, file) => {
+      if (err){
+        console.log(err);
+      } else {
+        obj = JSON.parse(file); //now it an object
+        obj.table.push(data); //add some data
+        json = JSON.stringify(obj); //convert it back to json
+        fs.writeFile(MESSAGES_PATH, json, 'utf8', (err) => {
+          if (err) {
+            console.log(err)
+          }
+        });
+    };
+  })
+}) 
     // TODO: write code here to add the message to the messages file
 
     // After writing to the file, we need to send up a response
     res.statusCode = 200
     res.end('Message posted successfully')
-  })
 }
 
 // this is the GET handler for /messages
