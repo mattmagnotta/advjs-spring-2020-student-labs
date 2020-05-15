@@ -1,19 +1,21 @@
 {
-  "name": "static-files",
+  "name": "Chatroom",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "watch-server": "npx nodemon index.js"
+    "watch-server": "npx nodemon index.js",
+    "watch": "npx watchify src/index.js -o bundle.js --debug --verbose"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "browserify": "^16.5.1",
     "nodemon": "^2.0.4"
   },
   "dependencies": {
     "http-hash-router": "^2.0.1",
     "st": "^2.0.0"
-  }
+  },
+  "keywords": [],
+  "description": ""
 }
