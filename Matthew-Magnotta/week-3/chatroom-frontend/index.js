@@ -33,12 +33,9 @@ function postMessage (req, res) {
     data += chunk
   })
 
-  console.log('inside postmessage function')
-  console.log(data)
-  console.log('***')
-
   req.on('end', function () {
     // at this point, data should be the entire json payload of the request
+    data += '\n'
 
     fs.appendFile(MESSAGES_PATH, data, (err) => {
       if (err) {
@@ -62,15 +59,28 @@ function getMessages (req, res) {
 
   // here is an example of how your messages might be formatted
   console.log('inside getmessage funciton')
-  const exampleMessages = [
-    { text: 'hello! This is an example message.', date: new Date() },
-    { text: 'This is another message.', date: new Date() }
-  ]
+  // const exampleMessages = [
+  //   { text: 'hello! This is an example message.', date: new Date() },
+  //   { text: 'This is another message.', date: new Date() }
+  // ]
 
-  // here we set the response code to 200 (success), and the content type to json
-  // then we send up the response by stringifying the messages array
-  res.writeHead(200, { 'Content-Type': 'application/json' })
-  res.end(JSON.stringify(exampleMessages))
+  fs.readFile(MESSAGES_PATH, 'utf8', (err, data) => {
+    if (err) {
+      console.log('error with reading file')
+      res.statusCode = 500
+    } else {
+      data = data.split('\n')
+
+      const chatHistory = data.map(message => JSON.parse(message.trim()))
+
+      console.log(chatHistory)
+
+      // here we set the response code to 200 (success), and the content type to json
+      // then we send up the response by stringifying the messages array
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify(chatHistory))
+    }
+  })
 }
 
 const server = http.createServer((req, res) => {

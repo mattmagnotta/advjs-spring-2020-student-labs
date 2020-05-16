@@ -1,3 +1,5 @@
+const yo = require('yo-yo')
+
 console.log('hello world!')
 
 function postMessage (text) {
@@ -20,14 +22,28 @@ function postMessage (text) {
 function getMessages () {
   fetch('/messages')
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => {
+      console.log(data)
+      yo.update(el, list(data))
+    })
 }
+
+function list (items) {
+  return yo`<ul>
+  ${items.map(function (item) {
+    return yo`<li>${item}</li>`
+  })}
+  </ul>`
+}
+
+getMessages()
+const el = list([])
+document.getElementById('messageHistory').append(el)
+
 
 // postMessage('hello')
 
-//getMessages()
-
-const form = document.getElementById('messageForm').onsubmit = function (e) {
+document.getElementById('messageForm').onsubmit = function (e) {
   e.preventDefault()
   const text = document.getElementById('formValue').value
 
@@ -35,3 +51,4 @@ const form = document.getElementById('messageForm').onsubmit = function (e) {
 
   postMessage(text)
 }
+
