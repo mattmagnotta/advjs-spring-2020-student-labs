@@ -26,3 +26,12 @@ function getMessages () {
 // postMessage('hello')
 
 //getMessages()
+
+const form = document.getElementById('messageForm').onsubmit = function (e) {
+  e.preventDefault()
+  const text = document.getElementById('formValue').value
+
+  console.log(text)
+
+  postMessage(text)
+}

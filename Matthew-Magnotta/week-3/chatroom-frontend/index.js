@@ -19,7 +19,6 @@ router.set('/messages', function (req, res) {
     getMessages(req, res)
   } else if (req.method === 'POST') {
     postMessage(req, res)
-    
   } else {
     res.statusCode = 400
     res.end('unsupported operation')
@@ -29,34 +28,31 @@ router.set('/messages', function (req, res) {
 // this is the POST handler for /messages
 // this function should write a new message to the file
 function postMessage (req, res) {
-  console.log('inside postmessage funciton')
   let data = ''
   req.on('data', function (chunk) {
     data += chunk
   })
 
+  console.log('inside postmessage function')
+  console.log(data)
+  console.log('***')
+
   req.on('end', function () {
     // at this point, data should be the entire json payload of the request
-    fs.readFile(MESSAGES_PATH, 'utf8', (err, file) => {
-      if (err){
-        console.log(err);
-      } else {
-        obj = JSON.parse(file); //now it an object
-        obj.table.push(data); //add some data
-        json = JSON.stringify(obj); //convert it back to json
-        fs.writeFile(MESSAGES_PATH, json, 'utf8', (err) => {
-          if (err) {
-            console.log(err)
-          }
-        });
-    };
-  })
-}) 
+
+    fs.appendFile(MESSAGES_PATH, data, (err) => {
+      if (err) {
+        console.log('error')
+        res.statusCode = 500
+      }
+    })
+
     // TODO: write code here to add the message to the messages file
 
     // After writing to the file, we need to send up a response
     res.statusCode = 200
     res.end('Message posted successfully')
+  })
 }
 
 // this is the GET handler for /messages
@@ -66,10 +62,10 @@ function getMessages (req, res) {
 
   // here is an example of how your messages might be formatted
   console.log('inside getmessage funciton')
-  // const exampleMessages = [
-  //   { text: 'hello! This is an example message.', date: new Date() },
-  //   { text: 'This is another message.', date: new Date() }
-  // ]
+  const exampleMessages = [
+    { text: 'hello! This is an example message.', date: new Date() },
+    { text: 'This is another message.', date: new Date() }
+  ]
 
   // here we set the response code to 200 (success), and the content type to json
   // then we send up the response by stringifying the messages array
