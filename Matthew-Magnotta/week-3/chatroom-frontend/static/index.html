@@ -7,13 +7,31 @@
   </div>
   <div>
     <form id="messageForm">
+    <label>Type your message</label>
     <input type="text" name="message" placeholder="message" id="formValue">
-    <input type="submit" value="send">
+    </br>
+    <label>choose a room...</label>
+    <select id='room'>
+      <option value='javascript'>javascript</option>
+      <option value='python'>python</option>
+      <option value='react' >react</option>
+    </select>
+    <br>
+    <input type="submit" value="submit">
+    
     </form>
   </div>
 
   <div id="messageHistory">
-  
+    <form id='filterForm'>
+      <label>filter by room: </label>
+      <select id='roomFilter'>
+        <option>javascript</option>
+        <option>python</option>
+        <option>react</option>
+      </select>
+      <input type='submit' value='filter'>
+    </form> 
   </div>
 
   <script src="bundle.js"></script>

@@ -2,7 +2,7 @@ const yo = require('yo-yo')
 
 console.log('hello world!')
 
-function postMessage (text,username) {
+function postMessage (text,username,room) {
   console.log('posting message')
   console.log(username)
   fetch('/messages', {
@@ -10,7 +10,7 @@ function postMessage (text,username) {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ text: text, date: new Date(), username: username })
+    body: JSON.stringify({ text: text, date: new Date(), username: username , room: room})
   })
     .then(data => {
       console.log('Success:', data)
@@ -24,7 +24,7 @@ function getMessages () {
   fetch('/messages')
     .then(response => response.json())
     .then(data => {
-      console.log(data)
+      // console.log(data)
       yo.update(el, list(data))
     })
 }
@@ -37,9 +37,9 @@ function list (items) {
   })}
   </ul>`
 }
-setInterval(function(){ 
-  getMessages()
- }, 1000);
+// setInterval(function(){ 
+//   getMessages()
+//  }, 1000);
  
  function getUsername() {
   var txt;
@@ -53,6 +53,16 @@ setInterval(function(){
   document.getElementById("newUsername").innerHTML = txt;
   return username
 }
+
+function filterRoom(room){
+  fetch('/messages')
+    .then(response => response.json())
+    .then(data => {
+      data = data.filter(item => item.room == room )
+      yo.update(el, list(data))
+    })
+
+}
 getUsername()
 getMessages()
 const el = list([])
@@ -65,9 +75,18 @@ document.getElementById('messageForm').onsubmit = function (e) {
   e.preventDefault()
   const text = document.getElementById('formValue').value
   const username = document.getElementById('newUsername').innerHTML
+  const room = document.getElementById('room').value
   console.log(text)
   console.log(username)
 
-  postMessage(text,username)
+  postMessage(text,username,room)
 }
 
+
+document.getElementById('filterForm').onsubmit = function (e) {
+  e.preventDefault()
+  const filterValue = document.getElementById('roomFilter').value
+  console.log(filterValue)
+
+  filterRoom(filterValue)
+}
