@@ -1,0 +1,1 @@
+console.error("Error: Parsing file /Users/matthewmagnotta/code/advjs-spring-2020-student-labs/Matthew-Magnotta/week-3/toDoList/handlers.js: Unexpected token (26:0)");

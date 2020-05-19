@@ -1,0 +1,21 @@
+{
+  "name": "Chatroom",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "watch-server": "npx nodemon index.js",
+    "watch": "npx watchify static/main.js -o static/bundle.js --debug --verbose"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^16.5.1",
+    "nodemon": "^2.0.4"
+  },
+  "dependencies": {
+    "http-hash-router": "^2.0.1",
+    "st": "^2.0.0"
+  },
+  "keywords": [],
+  "description": ""
+}

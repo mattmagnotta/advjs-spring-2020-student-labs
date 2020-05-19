@@ -1,0 +1,17 @@
+{
+  "name": "todolabv2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "watchify app.js -o bundle.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^16.5.1",
+    "watchify": "^3.11.1",
+    "yo-yo": "^1.4.1"
+  }
+}
