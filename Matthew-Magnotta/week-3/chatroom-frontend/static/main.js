@@ -33,13 +33,13 @@ function list (items) {
   console.log(items)
   return yo`<ul>
   ${items.map(function (item) {
-    return yo`<li>${item.text}</li>`
+    return yo`<li>${item.username} : ${item.text}</li>`
   })}
   </ul>`
 }
 setInterval(function(){ 
   getMessages()
- }, 60000);
+ }, 1000);
  
  function getUsername() {
   var txt;
