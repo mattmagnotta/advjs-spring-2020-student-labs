@@ -36,7 +36,9 @@ function list (items) {
   })}
   </ul>`
 }
-
+setInterval(function(){ 
+  getMessages()
+ }, 10000);
 getMessages()
 const el = list([])
 // console.log(el)
