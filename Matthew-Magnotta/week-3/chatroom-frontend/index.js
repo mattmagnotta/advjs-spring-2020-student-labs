@@ -10,6 +10,8 @@ const MESSAGES_PATH = 'static/messages.json'
 const mount = st({ path: path.join(__dirname, '/static'), url: '/static' })
 const router = Router()
 
+
+
 // going to /static/<file-name> will serve the file <file-name>
 router.set('/static/*', mount)
 

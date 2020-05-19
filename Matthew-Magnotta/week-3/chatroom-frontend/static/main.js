@@ -38,14 +38,25 @@ function list (items) {
 }
 setInterval(function(){ 
   getMessages()
- }, 10000);
+ }, 60000);
+ 
+ function getUsername() {
+  var txt;
+  var person = prompt("Please enter your name:", "Harry Potter");
+  if (person == null || person == "") {
+    txt = "User cancelled the prompt.";
+  } else {
+    txt = "Hello " + person + "! ";
+  }
+  document.getElementById("newUsername").innerHTML = txt;
+}
+getUsername()
 getMessages()
 const el = list([])
-// console.log(el)
+
 document.getElementById('messageHistory').append(el)
 
 
-// postMessage('hello')
 
 document.getElementById('messageForm').onsubmit = function (e) {
   e.preventDefault()
