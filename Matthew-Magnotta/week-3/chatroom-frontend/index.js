@@ -31,6 +31,7 @@ router.set('/messages', function (req, res) {
 // this function should write a new message to the file
 function postMessage (req, res) {
   let data = ''
+  
   req.on('data', function (chunk) {
     data += chunk
   })

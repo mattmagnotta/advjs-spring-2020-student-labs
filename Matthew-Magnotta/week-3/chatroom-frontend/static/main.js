@@ -2,14 +2,15 @@ const yo = require('yo-yo')
 
 console.log('hello world!')
 
-function postMessage (text) {
+function postMessage (text,username) {
   console.log('posting message')
+  console.log(username)
   fetch('/messages', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ text: text, date: new Date() })
+    body: JSON.stringify({ text: text, date: new Date(), username: username })
   })
     .then(data => {
       console.log('Success:', data)
@@ -42,13 +43,15 @@ setInterval(function(){
  
  function getUsername() {
   var txt;
-  var person = prompt("Please enter your name:", "Harry Potter");
-  if (person == null || person == "") {
+  var username = prompt("Enter your username:", "Harry Potter");
+  if (username == null || username == "") {
     txt = "User cancelled the prompt.";
   } else {
-    txt = "Hello " + person + "! ";
+    txt = username 
   }
+  
   document.getElementById("newUsername").innerHTML = txt;
+  return username
 }
 getUsername()
 getMessages()
@@ -61,9 +64,10 @@ document.getElementById('messageHistory').append(el)
 document.getElementById('messageForm').onsubmit = function (e) {
   e.preventDefault()
   const text = document.getElementById('formValue').value
-
+  const username = document.getElementById('newUsername').innerHTML
   console.log(text)
+  console.log(username)
 
-  postMessage(text)
+  postMessage(text,username)
 }
 
