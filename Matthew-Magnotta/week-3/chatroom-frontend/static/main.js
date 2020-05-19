@@ -29,15 +29,17 @@ function getMessages () {
 }
 
 function list (items) {
+  console.log(items)
   return yo`<ul>
   ${items.map(function (item) {
-    return yo`<li>${item}</li>`
+    return yo`<li>${item.text}</li>`
   })}
   </ul>`
 }
 
 getMessages()
 const el = list([])
+// console.log(el)
 document.getElementById('messageHistory').append(el)
 
 

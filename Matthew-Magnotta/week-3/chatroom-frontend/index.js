@@ -70,9 +70,10 @@ function getMessages (req, res) {
       res.statusCode = 500
     } else {
       data = data.split('\n')
-
+      console.log(data)
+       data = data.filter(item => item != '')
       const chatHistory = data.map(message => JSON.parse(message.trim()))
-
+      
       console.log(chatHistory)
 
       // here we set the response code to 200 (success), and the content type to json
